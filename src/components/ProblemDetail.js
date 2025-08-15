@@ -5,6 +5,7 @@ import { ArrowLeft, Play, Star, Clock, Users } from 'lucide-react';
 import problemsData from '../data/problems.json';
 import solutionsData from '../data/solutions.json';
 import { marked } from 'marked';
+import './ProblemDetail.css';
 
 // Pyodide integration for real Python execution
 const PyodideRunner = ({ code, expectedOutput, setOutput }) => {
@@ -216,9 +217,7 @@ const ProblemDetail = () => {
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        gap: '2rem',
-        height: 'calc(100vh - 400px)',
-        minHeight: '600px'
+        gap: '2rem'
       }}>
         {/* Left Panel - Problem Description */}
         <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
@@ -277,38 +276,24 @@ const ProblemDetail = () => {
           >
             {activeTab === 'description' ? (
               <div
-                style={{
-                  whiteSpace: 'pre-line',
-                  fontFamily: 'inherit',
-                  fontWeight: 400,
-                  letterSpacing: '0.01em'
-                }}
+                className="problem-content"
                 dangerouslySetInnerHTML={{
-                  __html: currentProblem.description.replace(/\n/g, '<br/>')
+                  __html: currentProblem.description
                 }}
               />
             ) : (
               <>
-                <pre style={{
-                  background: 'rgba(20, 20, 20, 0.5)',
-                  padding: '1rem',
-                  borderRadius: '0.5rem',
-                  overflow: 'auto',
-                  fontSize: '0.95rem',
-                  lineHeight: '1.4',
-                  marginBottom: '1rem'
-                }}>
-                  {currentSolution.solution}
-                </pre>
-                <div style={{
-                  marginTop: '0.5rem',
-                  color: '#b0b0c0',
-                  fontSize: '0.98rem',
-                  background: 'rgba(40,40,40,0.3)',
-                  borderRadius: '0.3rem',
-                  padding: '0.75rem'
-                }}>
-                  {currentSolution.explanation}
+                <div className="solution-code-container">
+                  <div className="solution-code-header">
+                    <span>Python Solution</span>
+                  </div>
+                  <pre className="solution-code">
+                    {currentSolution.solution}
+                  </pre>
+                </div>
+                <div className="solution-explanation">
+                  <h3>Explanation</h3>
+                  <p>{currentSolution.explanation}</p>
                 </div>
               </>
             )}

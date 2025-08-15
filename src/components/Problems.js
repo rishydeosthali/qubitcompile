@@ -1,124 +1,28 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Filter, CheckCircle, Circle, Star, Clock } from 'lucide-react';
+import problemsData from '../data/problems.json';
 
 const Problems = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState('all');
 
-  const problems = [
-    {
-      id: 1,
-      title: "Quantum Superposition State",
-      difficulty: "easy",
-      category: "Quantum Fundamentals",
-      acceptance: "87.3%",
-      completed: true,
-      description: "Create and manipulate quantum superposition states using numpy arrays.",
-      likes: 142,
-      time: "~15 min"
-    },
-    {
-      id: 2,
-      title: "Bell State Creation",
-      difficulty: "easy",
-      category: "Quantum Entanglement",
-      acceptance: "73.1%",
-      completed: false,
-      description: "Generate maximally entangled Bell states and measure their properties.",
-      likes: 89,
-      time: "~20 min"
-    },
-    {
-      id: 3,
-      title: "Quantum Circuit Simulator",
-      difficulty: "medium",
-      category: "Quantum Circuits",
-      acceptance: "64.2%",
-      completed: false,
-      description: "Build a basic quantum circuit simulator with single-qubit gates.",
-      likes: 156,
-      time: "~45 min"
-    },
-    {
-      id: 4,
-      title: "Grover's Search Algorithm",
-      difficulty: "medium",
-      category: "Quantum Algorithms",
-      acceptance: "52.8%",
-      completed: false,
-      description: "Implement Grover's algorithm for unstructured search problems.",
-      likes: 203,
-      time: "~60 min"
-    },
-    {
-      id: 5,
-      title: "Quantum Fourier Transform",
-      difficulty: "hard",
-      category: "Quantum Algorithms",
-      acceptance: "38.5%",
-      completed: false,
-      description: "Implement the Quantum Fourier Transform for period finding.",
-      likes: 178,
-      time: "~90 min"
-    },
-    {
-      id: 6,
-      title: "Variational Quantum Eigensolver",
-      difficulty: "hard",
-      category: "Quantum Chemistry",
-      acceptance: "31.2%",
-      completed: false,
-      description: "Use VQE to find ground state energies of molecular systems.",
-      likes: 134,
-      time: "~120 min"
-    },
-    {
-      id: 7,
-      title: "Quantum Error Correction",
-      difficulty: "hard",
-      category: "Error Correction",
-      acceptance: "29.6%",
-      completed: false,
-      description: "Implement basic quantum error correction codes.",
-      likes: 95,
-      time: "~105 min"
-    },
-    {
-      id: 8,
-      title: "Quantum Teleportation Protocol",
-      difficulty: "medium",
-      category: "Quantum Communication",
-      acceptance: "56.7%",
-      completed: false,
-      description: "Simulate the quantum teleportation protocol step by step.",
-      likes: 167,
-      time: "~50 min"
-    },
-    {
-      id: 9,
-      title: "Shor's Factoring Algorithm",
-      difficulty: "hard",
-      category: "Quantum Algorithms",
-      acceptance: "22.4%",
-      completed: false,
-      description: "Implement Shor's algorithm for integer factorization.",
-      likes: 245,
-      time: "~150 min"
-    },
-    {
-      id: 10,
-      title: "Quantum Walk Implementation",
-      difficulty: "medium",
-      category: "Quantum Algorithms",
-      acceptance: "47.3%",
-      completed: false,
-      description: "Simulate discrete and continuous quantum random walks.",
-      likes: 112,
-      time: "~70 min"
-    }
-  ];
+  const problems = Object.keys(problemsData).map(id => {
+    const problem = problemsData[id];
+    const descriptionHtml = problem.description || '';
+    const match = descriptionHtml.match(/<p>(.*?)<\/p>/);
+    const shortDescription = match ? match[1].replace(/<[^>]+>/g, '') : 'No description available.';
+
+    return {
+      id,
+      ...problem,
+      description: shortDescription.substring(0, 100) + (shortDescription.length > 100 ? '...' : ''),
+      // The 'completed' status is not in problems.json, so we'll default it to false.
+      // This could be managed by user state in a real application.
+      completed: id === '1' ? true : false, // Keep the first problem as completed for UI consistency
+    };
+  });
 
   const filteredProblems = problems.filter(problem => {
     const matchesSearch = problem.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -343,4 +247,4 @@ const Problems = () => {
   );
 };
 
-export default Problems; 
+export default Problems;
