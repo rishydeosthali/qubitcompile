@@ -1,78 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 import { ArrowLeft, Play, Star, Clock, Users } from 'lucide-react';
 import problemsData from '../data/problems.json';
 import solutionsData from '../data/solutions.json';
-import { marked } from 'marked';
 import './ProblemDetail.css';
-
-// Pyodide integration for real Python execution
-const PyodideRunner = ({ code, expectedOutput, setOutput }) => {
-  const [pyodide, setPyodide] = useState(null);
-
-  useEffect(() => {
-    if (!window.loadPyodide) return;
-    window.loadPyodide().then(setPyodide);
-  }, []);
-
-  const runPython = async () => {
-    if (pyodide) {
-      try {
-        pyodide.runPython(`
-import sys
-class CapturedOutput:
-    def __init__(self):
-        self.output = ""
-    def write(self, s):
-        self.output += s
-    def flush(self):
-        pass
-sys.stdout = CapturedOutput()
-`);
-        pyodide.runPython(code);
-        const pyOutput = pyodide.runPython("sys.stdout.output");
-        // Only check if expected output is present
-        if (pyOutput && expectedOutput && pyOutput.includes(expectedOutput)) {
-          setOutput(
-            pyOutput +
-              '\n\n✅ Output matches expected result!'
-          );
-        } else {
-          setOutput(
-            pyOutput +
-              '\n\n❌ Output does not match expected result.'
-          );
-        }
-      } catch (err) {
-        setOutput(err.toString() + '\n\n❌ Error executing code.');
-      }
-    } else {
-      setOutput('Pyodide is still loading...');
-    }
-  };
-
-  return runPython;
-};
 
 const ProblemDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const currentProblem = problemsData[id] || problemsData["1"];
-  const currentSolution = solutionsData[id] || "";
   const [code, setCode] = useState(currentProblem.starterCode || '');
   const [output, setOutput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('description');
 
-  // Extract expected output from description (first line in Example Output)
-  let expectedOutput = "";
-  if (currentProblem.description) {
-    const match = currentProblem.description.match(/Example Output.*?\n\s*• ([^\n<]*)/);
-    if (match) expectedOutput = match[1].trim();
-  }
+  const runCode = async () => {
+    setIsLoading(true);
+    setOutput('Running your code...');
 
-  // Pyodide runner function
-  const runCode = PyodideRunner({ code, expectedOutput, setOutput });
+    try {
+      const response = await fetch('https://us-central1-quantum-revolution-hd.cloudfunctions.net/quantum-executor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code }),
+      });
+
+      const result = await response.text();
+      setOutput(result);
+
+    } catch (error) {
+      setOutput(`An error occurred: ${error.message}`);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
@@ -288,12 +252,12 @@ const ProblemDetail = () => {
                     <span>Python Solution</span>
                   </div>
                   <pre className="solution-code">
-                    {currentSolution.solution}
+                    {solutionsData[id]?.solution}
                   </pre>
                 </div>
                 <div className="solution-explanation">
                   <h3>Explanation</h3>
-                  <p>{currentSolution.explanation}</p>
+                  <p>{solutionsData[id]?.explanation}</p>
                 </div>
               </>
             )}
@@ -313,20 +277,20 @@ const ProblemDetail = () => {
               fontSize: '1.1rem',
               color: '#e8e8f0'
             }}>Python Code Editor</span>
-            <button className="run-button" onClick={runCode} style={{
+            <button className="run-button" onClick={runCode} disabled={isLoading} style={{
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
-              background: '#4f8cff',
+              background: isLoading ? '#ccc' : '#4f8cff',
               color: '#fff',
               border: 'none',
               borderRadius: '4px',
               fontWeight: 'bold',
-              cursor: 'pointer',
+              cursor: isLoading ? 'not-allowed' : 'pointer',
               padding: '0.5rem 1.5rem'
             }}>
               <Play size={16} />
-              Run Code
+              {isLoading ? 'Running...' : 'Run Code'}
             </button>
           </div>
 
