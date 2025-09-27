@@ -2,3 +2,12 @@ functions-framework==3.*
 qiskit==0.45.0
 qiskit-aer
 matplotlib
+
+# gcloud functions deploy quantum-executor \
+#   --gen2 \
+#   --runtime=python310 \
+#   --region=us-central1 \
+#   --source=./backend \
+#   --entry-point=execute_code \
+#   --trigger-http \
+#   --allow-unauthenticated

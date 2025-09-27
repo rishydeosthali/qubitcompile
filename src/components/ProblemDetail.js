@@ -130,10 +130,6 @@ const ProblemDetail = () => {
               <Clock size={16} color="#b0b0c0" />
               <span style={{ color: '#b0b0c0' }}>{currentProblem.time}</span>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Users size={16} color="#b0b0c0" />
-              <span style={{ color: '#b0b0c0' }}>{currentProblem.submissions}</span>
-            </div>
           </div>
         </div>
 
@@ -184,7 +180,7 @@ const ProblemDetail = () => {
         gap: '2rem'
       }}>
         {/* Left Panel - Problem Description */}
-        <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '80vh' }}>
           <div style={{
             display: 'flex',
             gap: '2rem',
@@ -225,6 +221,7 @@ const ProblemDetail = () => {
           </div>
 
           <div
+            className="left-panel-content"
             style={{
               flex: 1,
               overflow: 'auto',
@@ -255,17 +252,13 @@ const ProblemDetail = () => {
                     {solutionsData[id]?.solution}
                   </pre>
                 </div>
-                <div className="solution-explanation">
-                  <h3>Explanation</h3>
-                  <p>{solutionsData[id]?.explanation}</p>
-                </div>
               </>
             )}
           </div>
         </div>
 
         {/* Right Panel - Code Editor */}
-        <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '80vh' }}>
           <div className="editor-header" style={{
             display: 'flex',
             alignItems: 'center',
@@ -294,7 +287,7 @@ const ProblemDetail = () => {
             </button>
           </div>
 
-          <div style={{ flex: 1, minHeight: '300px' }}>
+          <div style={{ flex: 1, minHeight: '300px', overflow: 'hidden' }}>
             <Editor
               height="100%"
               defaultLanguage="python"

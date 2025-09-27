@@ -31,7 +31,7 @@ def execute_code(request):
             [sys.executable, '-c', code],
             capture_output=True,
             text=True,
-            timeout=30  # 30-second timeout
+            timeout=60  # 30-second timeout
         )
         output = process.stdout
         if process.stderr:
