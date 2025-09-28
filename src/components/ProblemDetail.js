@@ -31,7 +31,7 @@ const ProblemDetail = () => {
     setOutput('Running your code...');
 
     try {
-      const response = await fetch(process.env.REACT_APP_BACKEND_URL, {
+      const response = await fetch('https://quantum-app-backend-244541317596.us-central1.run.app', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
