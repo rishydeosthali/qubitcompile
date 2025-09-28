@@ -31,7 +31,7 @@ const ProblemDetail = () => {
     setOutput('Running your code...');
 
     try {
-      const response = await fetch('/api/main', {
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
