@@ -14,13 +14,24 @@ const ProblemDetail = () => {
   const [output, setOutput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('description');
+  const [likes, setLikes] = useState(currentProblem.likes);
+  const [isStarred, setIsStarred] = useState(false);
+
+  const handleStarClick = () => {
+    if (isStarred) {
+      setLikes(likes - 1);
+    } else {
+      setLikes(likes + 1);
+    }
+    setIsStarred(!isStarred);
+  };
 
   const runCode = async () => {
     setIsLoading(true);
     setOutput('Running your code...');
 
     try {
-      const response = await fetch('https://us-central1-quantum-revolution-hd.cloudfunctions.net/quantum-executor', {
+      const response = await fetch('/api/main', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -123,10 +134,6 @@ const ProblemDetail = () => {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Star size={16} color="#ffd700" />
-              <span style={{ color: '#b0b0c0' }}>{currentProblem.likes}</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Clock size={16} color="#b0b0c0" />
               <span style={{ color: '#b0b0c0' }}>{currentProblem.time}</span>
             </div>
@@ -158,7 +165,7 @@ const ProblemDetail = () => {
             }}>
               {currentProblem.submissions}
             </div>
-            <div style={{ fontSize: '0.9rem', color: '#b0b0c0' }}>Submissions</div>
+            <div style={{ fontSize: '0.9rem', color: '#b0b0c0' }}>Views</div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{

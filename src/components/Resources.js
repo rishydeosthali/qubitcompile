@@ -11,20 +11,6 @@ const Resources = () => {
       url: "https://youtube.com/watch?v=JhHMJCUmq28"
     },
     {
-      title: "Quantum Superposition & Entanglement",
-      channel: "MinutePhysics",
-      duration: "4:12",
-      description: "Visual explanation of quantum superposition and entanglement",
-      url: "https://youtube.com/watch?v=DjpQHpstfx0"
-    },
-    {
-      title: "IBM Quantum Computing Course",
-      channel: "IBM Research",
-      duration: "15:45",
-      description: "Learn quantum computing with IBM's quantum computers",
-      url: "https://youtube.com/watch?v=RrUTwq5jKM4"
-    },
-    {
       title: "Quantum Algorithms: Shor's Algorithm",
       channel: "Qiskit",
       duration: "18:20",
@@ -32,56 +18,35 @@ const Resources = () => {
       url: "https://youtube.com/watch?v=wUwZZaI5u0c"
     },
     {
-      title: "Quantum Error Correction",
-      channel: "Microsoft Quantum",
-      duration: "12:15",
-      description: "Understanding how quantum computers handle errors",
-      url: "https://youtube.com/watch?v=X8jsijhllcE"
-    },
-    {
       title: "Quantum Machine Learning",
-      channel: "Google Quantum AI",
-      duration: "26:40",
+      channel: "IBM Technology ",
+      duration: "5:57",
       description: "Exploring the intersection of quantum computing and AI",
-      url: "https://youtube.com/watch?v=QtWCmO5aWmw"
+      url: "https://www.youtube.com/watch?v=NqHKr9CGWJ0"
     }
   ];
 
   const articles = [
     {
-      title: "A Practical Introduction to Quantum Computing",
-      source: "Nature Reviews",
-      readTime: "15 min read",
-      description: "Academic overview of quantum computing principles and applications",
-      url: "https://nature.com/articles/s41578-021-00340-z"
-    },
-    {
       title: "Quantum Advantage in Machine Learning",
       source: "Science Magazine",
       readTime: "12 min read",
       description: "Recent breakthroughs in quantum machine learning algorithms",
-      url: "https://science.org/doi/10.1126/science.abn7293"
+      url: "https://www.science.org/doi/10.1126/science.abn7293"
     },
     {
-      title: "Building Quantum Computers: A Hardware Perspective",
+      title: "The Case Against Quantum Computing",
       source: "IEEE Spectrum",
       readTime: "8 min read",
       description: "Technical challenges in quantum hardware development",
-      url: "https://spectrum.ieee.org/quantum-computing-hardware"
+      url: "https://spectrum.ieee.org/the-case-against-quantum-computing"
     },
     {
-      title: "Quantum Cryptography and Security",
-      source: "MIT Technology Review",
-      readTime: "10 min read",
-      description: "How quantum computing will impact cybersecurity",
-      url: "https://technologyreview.com/quantum-cryptography"
-    },
-    {
-      title: "NISQ Era: Near-term Quantum Applications",
-      source: "Quantum Magazine",
+      title: "How Space and Time Could Be a Quantum Error-Correcting Code",
+      source: "Quanta Magazine",
       readTime: "18 min read",
       description: "Exploring practical quantum applications in the NISQ era",
-      url: "https://quantamagazine.org/nisq-quantum-computing"
+      url: "https://www.quantamagazine.org/how-space-and-time-could-be-a-quantum-error-correcting-code-20190103/"
     }
   ];
 
@@ -91,28 +56,21 @@ const Resources = () => {
       authors: "Hidary, J.D.",
       publisher: "Springer",
       description: "Comprehensive textbook covering quantum algorithms and implementations",
-      url: "https://springer.com/quantum-computing-applied"
+      url: "https://www.springer.com/gp/book/9783030832735"
     },
     {
       title: "Programming Quantum Computers",
       authors: "Johnston, Harrigan, Gimeno-Segovia",
       publisher: "O'Reilly Media",
       description: "Hands-on guide to quantum programming with practical examples",
-      url: "https://oreilly.com/programming-quantum-computers"
-    },
-    {
-      title: "Quantum Computation and Quantum Information",
-      authors: "Nielsen & Chuang",
-      publisher: "Cambridge University Press",
-      description: "The definitive graduate textbook on quantum information theory",
-      url: "https://cambridge.org/quantum-computation"
+      url: "https://www.oreilly.com/library/view/programming-quantum-computers/9781492039679/"
     },
     {
       title: "Quantum Computing: A Gentle Introduction",
       authors: "Rieffel & Polak",
       publisher: "MIT Press",
       description: "Accessible introduction for computer scientists and mathematicians",
-      url: "https://mitpress.mit.edu/quantum-computing-gentle"
+      url: "https://mitpress.mit.edu/9780262015066/quantum-computing/"
     }
   ];
 
@@ -254,7 +212,7 @@ const Resources = () => {
           {[
             { name: 'IBM Qiskit', url: 'https://qiskit.org', color: '#00d4ff' },
             { name: 'Google Cirq', url: 'https://quantumai.google/cirq', color: '#4ecdc4' },
-            { name: 'Microsoft Q#', url: 'https://azure.microsoft.com/quantum', color: '#ff6b6b' },
+            { name: 'Microsoft Q#', url: 'https://quantum.microsoft.com/', color: '#ff6b6b' },
             { name: 'Rigetti Forest', url: 'https://rigetti.com', color: '#ff9f43' },
             { name: 'PennyLane', url: 'https://pennylane.ai', color: '#a8e6cf' }
           ].map((link, index) => (
@@ -294,4 +252,4 @@ const Resources = () => {
   );
 };
 
-export default Resources; 
+export default Resources;

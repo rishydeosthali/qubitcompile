@@ -20,7 +20,7 @@ const Problems = () => {
       description: shortDescription.substring(0, 100) + (shortDescription.length > 100 ? '...' : ''),
       // The 'completed' status is not in problems.json, so we'll default it to false.
       // This could be managed by user state in a real application.
-      completed: id === '1' ? true : false, // Keep the first problem as completed for UI consistency
+      completed: false, // Keep the first problem as completed for UI consistency
     };
   });
 
@@ -50,7 +50,7 @@ const Problems = () => {
         <h1 className="page-title">Quantum Problems</h1>
         <p className="page-subtitle">
           Challenge yourself with quantum computing problems ranging from basic concepts to advanced algorithms. 
-          Master the fundamentals and build towards quantum advantage.
+          Master the fundamentals and build towards quantum proficiency. <b>New problems added weekly!</b>
         </p>
       </div>
 
@@ -121,12 +121,6 @@ const Problems = () => {
           borderTop: '1px solid rgba(255, 255, 255, 0.1)'
         }}>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#4ecdc4' }}>
-              {problems.filter(p => p.completed).length}
-            </div>
-            <div style={{ fontSize: '0.9rem', color: '#b0b0c0' }}>Solved</div>
-          </div>
-          <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#00d4ff' }}>
               {problems.length}
             </div>
@@ -170,12 +164,6 @@ const Problems = () => {
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                  <Star size={14} color="#ffd700" />
-                  <span style={{ fontSize: '0.8rem', color: '#b0b0c0' }}>
-                    {problem.likes}
-                  </span>
-                </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                   <Clock size={14} color="#b0b0c0" />
                   <span style={{ fontSize: '0.8rem', color: '#b0b0c0' }}>
