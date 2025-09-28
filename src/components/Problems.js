@@ -96,18 +96,19 @@ const Problems = () => {
               value={selectedDifficulty}
               onChange={(e) => setSelectedDifficulty(e.target.value)}
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                background: '#2a2a2e',
+                border: '1px solid #00d4ff',
                 borderRadius: '0.5rem',
                 padding: '0.75rem 1rem',
                 color: '#e8e8f0',
-                fontSize: '0.9rem'
+                fontSize: '0.9rem',
+                outline: 'none'
               }}
             >
-              <option value="all">All Difficulties</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
+              <option style={{ color: '#000000' }} value="all">All Difficulties</option>
+              <option style={{ color: '#000000' }} value="easy">Easy</option>
+              <option style={{ color: '#000000' }} value="medium">Medium</option>
+              <option style={{ color: '#000000' }} value="hard">Hard</option>
             </select>
           </div>
         </div>
