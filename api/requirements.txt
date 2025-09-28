@@ -1,6 +1,0 @@
-functions-framework==3.*
-qiskit-terra==0.25.2
-qiskit-aer==0.13.4
-qiskit-ibmq-provider==0.20.0
-qiskit==0.45.0
-matplotlib==3.8.0

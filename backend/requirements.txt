@@ -1,0 +1,4 @@
+functions-framework==3.*
+qiskit==0.45.0
+qiskit-aer
+matplotlib

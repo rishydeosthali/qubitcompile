@@ -1,6 +1,7 @@
 import functions_framework
 import subprocess
 import sys
+from flask import make_response
 
 @functions_framework.http
 def execute_code(request):
@@ -21,7 +22,9 @@ def execute_code(request):
 
     request_json = request.get_json(silent=True)
     if not request_json or 'code' not in request_json:
-        return ('Invalid request: missing "code" in JSON body', 400, headers)
+        response = make_response('Invalid request: missing "code" in JSON body', 400)
+        response.headers.extend(headers)
+        return response
 
     code = request_json['code']
 
@@ -37,9 +40,15 @@ def execute_code(request):
         if process.stderr:
             output += "\n--- STDERR ---" + process.stderr
 
-        return (output, 200, headers)
+        response = make_response(output, 200)
+        response.headers.extend(headers)
+        return response
 
     except subprocess.TimeoutExpired:
-        return ('Execution timed out after 30 seconds.', 408, headers)
+        response = make_response('Execution timed out after 30 seconds.', 408)
+        response.headers.extend(headers)
+        return response
     except Exception as e:
-        return (f"An error occurred: {e}", 500, headers)
+        response = make_response(f"An error occurred: {e}", 500)
+        response.headers.extend(headers)
+        return response
