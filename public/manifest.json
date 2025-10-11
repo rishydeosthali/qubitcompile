@@ -1,6 +1,6 @@
 {
-  "short_name": "QuantumCode",
-  "name": "QuantumCode",
+  "short_name": "QubitCompile",
+  "name": "QubitCompile",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

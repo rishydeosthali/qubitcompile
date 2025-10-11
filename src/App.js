@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
-import { BookOpen, Code, Cpu } from 'lucide-react';
+import { BookOpen, Code } from 'lucide-react';
 import Resources from './components/Resources';
 import Problems from './components/Problems';
 import ProblemDetail from './components/ProblemDetail';
@@ -12,8 +12,8 @@ function App() {
       <div className="App">
         <nav className="navbar">
           <div className="nav-brand">
-            <Cpu className="nav-icon" />
-            <span>QuantumCode</span>
+            <img src="/favicon2.ico" alt="QubitCompile Logo" className="nav-icon" />
+            <span>QubitCompile</span>
           </div>
           
           <div className="nav-links">
