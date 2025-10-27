@@ -144,7 +144,7 @@ const Problems = () => {
                 background: 'rgba(30, 30, 60, 0.8)',
                 border: '1px solid rgba(255, 255, 255, 0.2)',
                 borderRadius: '0.5rem',
-                padding: '0.75rem 1rem',
+                padding: '0.75rem 0.75rem 0.75rem 1rem',
                 color: '#ffffff',
                 fontSize: '0.9rem',
                 outline: 'none',
