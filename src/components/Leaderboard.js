@@ -140,6 +140,19 @@ const Leaderboard = () => {
         <p className="page-subtitle">
           Top performers ranked by completed problems. Master quantum computing and climb the ranks!
         </p>
+        <div style={{
+          background: 'rgba(255, 255, 255, 0.05)',
+          padding: '0.75rem 2rem',
+          borderRadius: '0.5rem',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          textAlign: 'center',
+          margin: '1rem auto 0',
+          width: 'fit-content'
+        }}>
+          <p className="page-subtitle" style={{ fontStyle: 'italic', color: '#b0b0c0', margin: 0 }}>
+            All Submitted Solutions Are Reviewed
+          </p>
+        </div>
       </div>
 
       {leaderboardData.length === 0 ? (
@@ -153,6 +166,46 @@ const Leaderboard = () => {
       ) : (
         <>
           {/* Current User Rank Display */}
+          {currentUser && !currentUserRank && (
+            <div className="card" style={{ 
+              marginBottom: '2rem',
+              background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(78, 205, 196, 0.1))',
+              border: '2px solid rgba(0, 212, 255, 0.3)'
+            }}>
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '1rem'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <div style={{ flex: 1, minWidth: '200px' }}>
+                    <div>
+                      <h3 style={{ 
+                        color: '#e8e8f0', 
+                        margin: 0,
+                        fontSize: '1.5rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}>
+                        You are unranked
+                      </h3>
+                      <p style={{ 
+                        color: '#8a8a9a', 
+                        margin: '0.5rem 0 0 0.25rem',
+                        fontSize: '0.75rem',
+                        fontStyle: 'italic'
+                      }}>
+                        Complete more problems to get on leaderboard!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
           {currentUserRank && (
             <div className="card" style={{ 
               marginBottom: '2rem',

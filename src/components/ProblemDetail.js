@@ -37,6 +37,7 @@ const ProblemDetail = () => {
   const [lastOutput, setLastOutput] = useState('');
   const [submissions, setSubmissions] = useState(currentProblem.submissions);
   const [showSolution, setShowSolution] = useState(false);
+  const [showSolutionConfirmation, setShowSolutionConfirmation] = useState(false);
 
   const parseSubmissions = (subs) => {
     if (typeof subs === 'string' && subs.toUpperCase().endsWith('K')) {
@@ -53,11 +54,20 @@ const ProblemDetail = () => {
   };
 
   const handleShowSolution = () => {
+    setShowSolutionConfirmation(true);
+  };
+
+  const handleConfirmSolution = () => {
     if (user) {
       markSolutionAsViewed(user.uid, id);
       setViewedSolutions(prev => ({ ...prev, [id]: true })); // Update local state
     }
     setShowSolution(true);
+    setShowSolutionConfirmation(false);
+  };
+
+  const handleCancelSolution = () => {
+    setShowSolutionConfirmation(false);
   };
 
   useEffect(() => {
@@ -518,7 +528,7 @@ const ProblemDetail = () => {
               textAlign: 'center',
               border: '1px solid rgba(255, 159, 67, 0.3)'
             }}>
-              You have viewed the solution for this problem, so it cannot be marked as completed.
+              You have viewed the solution for this problem, so it cannot be marked as completed
             </div>
           )}
           <div style={{
@@ -708,17 +718,61 @@ const ProblemDetail = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     height: '100%',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    padding: '3rem 2rem',
+                    background: 'rgba(255, 255, 255, 0.02)',
+                    borderRadius: '1rem',
+                    border: '1px solid rgba(255, 255, 255, 0.1)'
                   }}>
-                    <button onClick={handleShowSolution} className="run-button">Show Solution</button>
+                    <h3 style={{ 
+                      color: '#e8e8f0', 
+                      marginBottom: '1rem',
+                      fontSize: '1.25rem',
+                      fontWeight: '500',
+                      fontFamily: "'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                      letterSpacing: '0.01em'
+                    }}>View Solution</h3>
                     <p style={{
-                      color: '#ffffff',
-                      marginTop: '1.5rem',
+                      color: '#ff6b6b',
+                      marginBottom: '1.5rem',
                       fontSize: '0.9rem',
-                      maxWidth: '80%'
+                      maxWidth: '100%',
+                      fontFamily: "'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                      fontWeight: '500',
+                      lineHeight: '1.5',
+                      background: 'rgba(255, 107, 107, 0.05)',
+                      padding: '0.75rem',
+                      borderRadius: '0.5rem',
+                      border: '1px solid rgba(255, 107, 107, 0.1)'
                     }}>
-                      Viewing the solution will prevent you from receiving credit for this problem
+                      ⚠️ This will prevent you from receiving credit for this problem
                     </p>
+                    <button 
+                      onClick={handleShowSolution}
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                        color: '#e8e8f0',
+                        padding: '0.75rem 1.5rem',
+                        borderRadius: '0.5rem',
+                        cursor: 'pointer',
+                        fontWeight: '500',
+                        fontSize: '0.9rem',
+                        fontFamily: "'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                        transition: 'all 0.3s ease',
+                        letterSpacing: '0.01em'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+                        e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                        e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                      }}
+                    >
+                      Show Solution
+                    </button>
                   </div>
                 )
               ) : (
@@ -904,6 +958,115 @@ const ProblemDetail = () => {
         output={lastOutput}
         expectedOutput={getExpectedOutput(id)}
       />
+
+      {/* Solution Confirmation Modal */}
+      {showSolutionConfirmation && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0, 0, 0, 0.8)',
+          backdropFilter: 'blur(5px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1000,
+          padding: '2rem'
+        }}>
+          <div style={{
+            background: 'rgba(30, 30, 60, 0.95)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '1rem',
+            padding: '2rem',
+            maxWidth: '400px',
+            width: '100%',
+            textAlign: 'center',
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
+          }}>
+            <h2 style={{
+              color: '#e8e8f0',
+              marginBottom: '1rem',
+              fontSize: '1.25rem',
+              fontWeight: '600',
+              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+              letterSpacing: '0.01em'
+            }}>
+              Are you sure?
+            </h2>
+            
+            <p style={{
+              color: '#b0b0c0',
+              marginBottom: '2rem',
+              fontSize: '0.9rem',
+              lineHeight: '1.5',
+              fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+              fontWeight: '400'
+            }}>
+              This will prevent you from receiving credit for this problem
+            </p>
+            
+            <div style={{
+              display: 'flex',
+              gap: '1rem',
+              justifyContent: 'center'
+            }}>
+              <button
+                onClick={handleCancelSolution}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  color: '#e8e8f0',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '0.5rem',
+                  cursor: 'pointer',
+                  fontWeight: '500',
+                  fontSize: '0.9rem',
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  transition: 'all 0.3s ease',
+                  letterSpacing: '0.01em'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                }}
+              >
+                Cancel
+              </button>
+              
+              <button
+                onClick={handleConfirmSolution}
+                style={{
+                  background: 'rgba(255, 107, 107, 0.8)',
+                  border: 'none',
+                  color: 'white',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '0.5rem',
+                  cursor: 'pointer',
+                  fontWeight: '600',
+                  fontSize: '0.9rem',
+                  fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                  transition: 'all 0.3s ease',
+                  letterSpacing: '0.01em'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = 'rgba(255, 107, 107, 1)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = 'rgba(255, 107, 107, 0.8)';
+                }}
+              >
+                Show Solution
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
