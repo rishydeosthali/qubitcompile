@@ -141,23 +141,39 @@ const Problems = () => {
               value={selectedDifficulty}
               onChange={(e) => setSelectedDifficulty(e.target.value)}
               style={{
-                background: 'rgba(30, 30, 60, 0.8)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
+                background: '#1e1e3c',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
                 borderRadius: '0.5rem',
-                padding: '0.75rem 0.75rem 0.75rem 1rem',
+                padding: '0.75rem 1rem',
                 color: '#ffffff',
                 fontSize: '0.9rem',
                 outline: 'none',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s ease',
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                MozAppearance: 'none',
+                backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right 0.75rem center',
+                backgroundSize: '16px',
+                paddingRight: '2.5rem'
               }}
               onMouseEnter={(e) => {
                 e.target.style.borderColor = 'rgba(0, 212, 255, 0.5)';
-                e.target.style.background = 'rgba(30, 30, 60, 0.9)';
+                e.target.style.background = '#2a2a4c';
               }}
               onMouseLeave={(e) => {
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                e.target.style.background = 'rgba(30, 30, 60, 0.8)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                e.target.style.background = '#1e1e3c';
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = 'rgba(0, 212, 255, 0.5)';
+                e.target.style.background = '#2a2a4c';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                e.target.style.background = '#1e1e3c';
               }}
             >
               <option value="all">All Difficulties</option>

@@ -280,11 +280,6 @@ const Leaderboard = () => {
                   <div className="podium-medal">
                     <Medal size={40} color="#C0C0C0" />
                   </div>
-                  {leaderboardData[1].photoURL ? (
-                    <img src={leaderboardData[1].photoURL} alt={leaderboardData[1].displayName} className="podium-avatar" />
-                  ) : (
-                    <User size={40} className="podium-avatar-icon" />
-                  )}
                   <div className="podium-name">{leaderboardData[1].displayName}</div>
                   <div className="podium-count">{leaderboardData[1].completedCount} problems</div>
                 </div>
@@ -296,11 +291,6 @@ const Leaderboard = () => {
                   <div className="podium-medal">
                     <Crown size={40} color="#FFD700" />
                   </div>
-                  {leaderboardData[0].photoURL ? (
-                    <img src={leaderboardData[0].photoURL} alt={leaderboardData[0].displayName} className="podium-avatar" />
-                  ) : (
-                    <User size={40} className="podium-avatar-icon" />
-                  )}
                   <div className="podium-name">{leaderboardData[0].displayName}</div>
                   <div className="podium-count">{leaderboardData[0].completedCount} problems</div>
                 </div>
@@ -312,11 +302,6 @@ const Leaderboard = () => {
                   <div className="podium-medal">
                     <Award size={40} color="#CD7F32" />
                   </div>
-                  {leaderboardData[2].photoURL ? (
-                    <img src={leaderboardData[2].photoURL} alt={leaderboardData[2].displayName} className="podium-avatar" />
-                  ) : (
-                    <User size={40} className="podium-avatar-icon" />
-                  )}
                   <div className="podium-name">{leaderboardData[2].displayName}</div>
                   <div className="podium-count">{leaderboardData[2].completedCount} problems</div>
                 </div>
@@ -342,13 +327,6 @@ const Leaderboard = () => {
                       {getRankIcon(rank)}
                     </div>
                     <div className="leaderboard-user">
-                      {user.photoURL ? (
-                        <img src={user.photoURL} alt={user.displayName} className="leaderboard-avatar" />
-                      ) : (
-                        <div className="leaderboard-avatar-placeholder">
-                          <User size={24} />
-                        </div>
-                      )}
                       <div className="leaderboard-info">
                         <div className="leaderboard-name">
                           {user.displayName === 'Anonymous' && !user.email ? (
