@@ -79,7 +79,7 @@ const Resources = () => {
       <div className="page-header">
         <h1 className="page-title">Quantum Resources</h1>
         <p className="page-subtitle">
-          Curated collection of the best quantum computing videos, articles, and books to accelerate your learning journey.
+          Curated collection of the best quantum computing videos, articles, and books to accelerate your learning journey
         </p>
       </div>
 

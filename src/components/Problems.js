@@ -1,12 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Filter, CheckCircle, Circle, Star, Clock } from 'lucide-react';
+import { Search, Filter, CheckCircle, Circle, Star, Clock, Users } from 'lucide-react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase';
+import { loadUserProgress, getCompletionCount } from '../utils/progress';
 import problemsData from '../data/problems.json';
 
 const Problems = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState('all');
+  const [user, setUser] = useState(null);
+  const [completedProblems, setCompletedProblems] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setUser(user);
+      if (user) {
+        const { completedProblems } = await loadUserProgress(user.uid);
+        setCompletedProblems(completedProblems);
+      } else {
+        setCompletedProblems({});
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Listen for storage events to update completion status when it changes in other tabs/components
+  useEffect(() => {
+    const handleStorageChange = async (e) => {
+      if (e.key === 'userProgress' && user) {
+        const { completedProblems } = await loadUserProgress(user.uid);
+        setCompletedProblems(completedProblems);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Also listen for custom events
+    const handleProgressUpdate = async () => {
+      if (user) {
+        const { completedProblems } = await loadUserProgress(user.uid);
+        setCompletedProblems(completedProblems);
+      }
+    };
+
+    window.addEventListener('progressUpdated', handleProgressUpdate);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('progressUpdated', handleProgressUpdate);
+    };
+  }, [user]);
 
   const problems = Object.keys(problemsData).map(id => {
     const problem = problemsData[id];
@@ -18,9 +66,7 @@ const Problems = () => {
       id,
       ...problem,
       description: shortDescription.substring(0, 100) + (shortDescription.length > 100 ? '...' : ''),
-      // The 'completed' status is not in problems.json, so we'll default it to false.
-      // This could be managed by user state in a real application.
-      completed: false, // Keep the first problem as completed for UI consistency
+      completed: completedProblems[id] ? true : false,
     };
   });
 
@@ -96,20 +142,22 @@ const Problems = () => {
               value={selectedDifficulty}
               onChange={(e) => setSelectedDifficulty(e.target.value)}
               style={{
-                background: '#2a2a2e',
-                border: 'none',
+                // Simplified styles
+                background: 'transparent',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
                 borderRadius: '0.5rem',
                 padding: '0.75rem 1rem',
-                color: '#ffffff',
+                color: '#e8e8f0',
                 fontSize: '0.9rem',
                 outline: 'none',
-                boxShadow: 'none'
+                boxShadow: 'none',
+                cursor: 'pointer'
               }}
             >
-              <option style={{ color: '#ffffff' }} value="all">All Difficulties</option>
-              <option style={{ color: '#ffffff' }} value="easy">Easy</option>
-              <option style={{ color: '#ffffff' }} value="medium">Medium</option>
-              <option style={{ color: '#ffffff' }} value="hard">Hard</option>
+              <option style={{ color: '#2a2a2e', background: '#1a1a1a' }} value="all">All Difficulties</option>
+              <option style={{ color: '#2a2a2e', background: '#1a1a1a' }} value="easy">Easy</option>
+              <option style={{ color: '#2a2a2e', background: '#1a1a1a' }} value="medium">Medium</option>
+              <option style={{ color: '#2a2a2e', background: '#1a1a1a' }} value="hard">Hard</option>
             </select>
           </div>
         </div>
@@ -126,11 +174,17 @@ const Problems = () => {
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#00d4ff' }}>
               {problems.length}
             </div>
-            <div style={{ fontSize: '0.9rem', color: '#b0b0c0' }}>Total</div>
+            <div style={{ fontSize: '0.9rem', color: '#b0b0c0' }}>Total Problems</div>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#4ecdc4' }}>
+              {getCompletionCount(completedProblems)}
+            </div>
+            <div style={{ fontSize: '0.9rem', color: '#b0b0c0' }}>Completed</div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#ff6b6b' }}>
-              {Math.round((problems.filter(p => p.completed).length / problems.length) * 100)}%
+              {problems.length > 0 ? Math.round((getCompletionCount(completedProblems) / problems.length) * 100) : 0}%
             </div>
             <div style={{ fontSize: '0.9rem', color: '#b0b0c0' }}>Progress</div>
           </div>
@@ -153,7 +207,7 @@ const Problems = () => {
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 {problem.completed ? (
-                  <CheckCircle size={20} color="#4ecdc4" fill="#4ecdc4" />
+                  <Circle size={20} color="#4ecdc4" fill="#4ecdc4" />
                 ) : (
                   <Circle size={20} color="#666" />
                 )}
@@ -166,6 +220,12 @@ const Problems = () => {
                 </span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                  <Users size={14} color="#b0b0c0" />
+                  <span style={{ fontSize: '0.8rem', color: '#b0b0c0' }}>
+                    {problem.submissions}
+                  </span>
+                </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
                   <Clock size={14} color="#b0b0c0" />
                   <span style={{ fontSize: '0.8rem', color: '#b0b0c0' }}>

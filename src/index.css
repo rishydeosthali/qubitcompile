@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Add this class to the body to prevent scrolling when a modal is open */
+body.modal-open {
+  overflow: hidden;
+}
