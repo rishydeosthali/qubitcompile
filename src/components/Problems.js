@@ -93,10 +93,9 @@ const Problems = () => {
   return (
     <div>
       <div className="page-header">
-        <h1 className="page-title">Quantum Problems</h1>
+        <h1 className="page-title">LeetCode of Quantum Computing</h1>
         <p className="page-subtitle">
-          Challenge yourself with quantum computing problems ranging from basic concepts to advanced algorithms. 
-          Master the fundamentals and build towards quantum proficiency. <b>New problems added weekly!</b>
+          Challenge yourself with quantum computing problems ranging from basic concepts to advanced algorithms. <b>New problems added weekly!</b>
         </p>
       </div>
 
@@ -142,22 +141,29 @@ const Problems = () => {
               value={selectedDifficulty}
               onChange={(e) => setSelectedDifficulty(e.target.value)}
               style={{
-                // Simplified styles
-                background: 'transparent',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                background: 'rgba(30, 30, 60, 0.8)',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
                 borderRadius: '0.5rem',
                 padding: '0.75rem 1rem',
-                color: '#e8e8f0',
+                color: '#ffffff',
                 fontSize: '0.9rem',
                 outline: 'none',
-                boxShadow: 'none',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.borderColor = 'rgba(0, 212, 255, 0.5)';
+                e.target.style.background = 'rgba(30, 30, 60, 0.9)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                e.target.style.background = 'rgba(30, 30, 60, 0.8)';
               }}
             >
-              <option style={{ color: '#2a2a2e', background: '#1a1a1a' }} value="all">All Difficulties</option>
-              <option style={{ color: '#2a2a2e', background: '#1a1a1a' }} value="easy">Easy</option>
-              <option style={{ color: '#2a2a2e', background: '#1a1a1a' }} value="medium">Medium</option>
-              <option style={{ color: '#2a2a2e', background: '#1a1a1a' }} value="hard">Hard</option>
+              <option value="all">All Difficulties</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
             </select>
           </div>
         </div>

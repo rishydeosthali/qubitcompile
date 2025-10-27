@@ -387,22 +387,29 @@ const ProblemDetail = () => {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '0.5rem',
-            background: 'rgba(255, 255, 255, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            color: '#e8e8f0',
-            padding: '0.75rem 1rem',
-            borderRadius: '0.5rem',
+            gap: '0.75rem',
+            background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(78, 205, 196, 0.1))',
+            border: '2px solid rgba(0, 212, 255, 0.3)',
+            color: '#00d4ff',
+            padding: '1rem 1.5rem',
+            borderRadius: '0.75rem',
             cursor: 'pointer',
-            transition: 'all 0.3s ease'
+            transition: 'all 0.3s ease',
+            fontWeight: '600',
+            fontSize: '1rem',
+            boxShadow: '0 4px 15px rgba(0, 212, 255, 0.1)'
           }}
           onMouseEnter={e => {
-            e.target.style.background = 'rgba(0, 212, 255, 0.1)';
-            e.target.style.borderColor = 'rgba(0, 212, 255, 0.3)';
+            e.target.style.background = 'linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(78, 205, 196, 0.2))';
+            e.target.style.borderColor = 'rgba(0, 212, 255, 0.5)';
+            e.target.style.transform = 'translateY(-2px)';
+            e.target.style.boxShadow = '0 6px 20px rgba(0, 212, 255, 0.2)';
           }}
           onMouseLeave={e => {
-            e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-            e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            e.target.style.background = 'linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(78, 205, 196, 0.1))';
+            e.target.style.borderColor = 'rgba(0, 212, 255, 0.3)';
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.boxShadow = '0 4px 15px rgba(0, 212, 255, 0.1)';
           }}
         >
           <ArrowLeft size={20} />
@@ -416,15 +423,38 @@ const ProblemDetail = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem',
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              color: '#e8e8f0',
-              padding: '0.75rem 1rem',
-              borderRadius: '0.5rem',
-              cursor: 'pointer',
+              gap: '0.75rem',
+              background: !prevProblemId 
+                ? 'rgba(255, 255, 255, 0.05)' 
+                : 'linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(0, 212, 255, 0.1))',
+              border: !prevProblemId 
+                ? '1px solid rgba(255, 255, 255, 0.1)' 
+                : '2px solid rgba(78, 205, 196, 0.3)',
+              color: !prevProblemId ? '#8a8a9a' : '#4ecdc4',
+              padding: '1rem 1.5rem',
+              borderRadius: '0.75rem',
+              cursor: !prevProblemId ? 'not-allowed' : 'pointer',
               transition: 'all 0.3s ease',
-              opacity: !prevProblemId ? 0.5 : 1
+              fontWeight: '600',
+              fontSize: '1rem',
+              opacity: !prevProblemId ? 0.5 : 1,
+              boxShadow: !prevProblemId ? 'none' : '0 4px 15px rgba(78, 205, 196, 0.1)'
+            }}
+            onMouseEnter={e => {
+              if (prevProblemId) {
+                e.target.style.background = 'linear-gradient(135deg, rgba(78, 205, 196, 0.2), rgba(0, 212, 255, 0.2))';
+                e.target.style.borderColor = 'rgba(78, 205, 196, 0.5)';
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 6px 20px rgba(78, 205, 196, 0.2)';
+              }
+            }}
+            onMouseLeave={e => {
+              if (prevProblemId) {
+                e.target.style.background = 'linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(0, 212, 255, 0.1))';
+                e.target.style.borderColor = 'rgba(78, 205, 196, 0.3)';
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 4px 15px rgba(78, 205, 196, 0.1)';
+              }
             }}
           >
             <ArrowLeft size={20} />
@@ -436,15 +466,38 @@ const ProblemDetail = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem',
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              color: '#e8e8f0',
-              padding: '0.75rem 1rem',
-              borderRadius: '0.5rem',
-              cursor: 'pointer',
+              gap: '0.75rem',
+              background: !nextProblemId 
+                ? 'rgba(255, 255, 255, 0.05)' 
+                : 'linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 159, 67, 0.1))',
+              border: !nextProblemId 
+                ? '1px solid rgba(255, 255, 255, 0.1)' 
+                : '2px solid rgba(255, 107, 107, 0.3)',
+              color: !nextProblemId ? '#8a8a9a' : '#ff6b6b',
+              padding: '1rem 1.5rem',
+              borderRadius: '0.75rem',
+              cursor: !nextProblemId ? 'not-allowed' : 'pointer',
               transition: 'all 0.3s ease',
-              opacity: !nextProblemId ? 0.5 : 1
+              fontWeight: '600',
+              fontSize: '1rem',
+              opacity: !nextProblemId ? 0.5 : 1,
+              boxShadow: !nextProblemId ? 'none' : '0 4px 15px rgba(255, 107, 107, 0.1)'
+            }}
+            onMouseEnter={e => {
+              if (nextProblemId) {
+                e.target.style.background = 'linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 159, 67, 0.2))';
+                e.target.style.borderColor = 'rgba(255, 107, 107, 0.5)';
+                e.target.style.transform = 'translateY(-2px)';
+                e.target.style.boxShadow = '0 6px 20px rgba(255, 107, 107, 0.2)';
+              }
+            }}
+            onMouseLeave={e => {
+              if (nextProblemId) {
+                e.target.style.background = 'linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 159, 67, 0.1))';
+                e.target.style.borderColor = 'rgba(255, 107, 107, 0.3)';
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 4px 15px rgba(255, 107, 107, 0.1)';
+              }
             }}
           >
             Next
@@ -702,8 +755,8 @@ const ProblemDetail = () => {
                   }}>Sign In to View Solutions</h3>
                   <button 
                     onClick={() => {
-                      // Trigger sign in - go to problems page which will show auth modal
-                      navigate('/problems');
+                      // Trigger sign in modal by dispatching a custom event
+                      window.dispatchEvent(new CustomEvent('showAuthModal'));
                     }}
                     style={{
                       background: 'linear-gradient(135deg, #00d4ff, #0099cc)',

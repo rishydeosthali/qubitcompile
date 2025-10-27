@@ -29,7 +29,17 @@ function App() {
       setLoading(false);
     });
 
-    return () => unsubscribe();
+    // Listen for custom event to show auth modal
+    const handleShowAuthModal = () => {
+      setShowAuth(true);
+    };
+
+    window.addEventListener('showAuthModal', handleShowAuthModal);
+
+    return () => {
+      unsubscribe();
+      window.removeEventListener('showAuthModal', handleShowAuthModal);
+    };
   }, []);
 
   const handleSignOut = async () => {
