@@ -134,7 +134,7 @@ const Leaderboard = () => {
     <div className="leaderboard-container">
       <div className="page-header">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
-          <Trophy size={48} color="#FFD700" style={{ marginTop: '-5px' }} />
+          <Trophy size={48} color="#FFD700" style={{ marginTop: '-18px' }} />
           <h1 className="page-title">Leaderboard</h1>
         </div>
         <p className="page-subtitle">
