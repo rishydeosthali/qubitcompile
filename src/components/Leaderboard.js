@@ -258,7 +258,7 @@ const Leaderboard = () => {
                 flexWrap: 'wrap',
                 gap: '1rem'
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
                   <Trophy size={32} color="#FFD700" />
                   <div style={{ flex: 1, minWidth: '200px' }}>
                     {editingName ? (
@@ -343,7 +343,7 @@ const Leaderboard = () => {
                         </h3>
                         <p style={{ 
                           color: '#8a8a9a', 
-                          margin: '0.5rem 0 0 0.25rem',
+                          margin: '0.5rem 0 0 0',
                           fontSize: '0.75rem',
                           fontStyle: 'italic'
                         }}>
@@ -353,7 +353,7 @@ const Leaderboard = () => {
                     )}
                   </div>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                   <Star size={20} color="#FFD700" />
                   <span style={{ color: '#e8e8f0', fontWeight: '600' }}>
                     {leaderboardData[currentUserRank - 1]?.completedCount || 0} problems completed
