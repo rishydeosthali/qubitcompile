@@ -138,7 +138,7 @@ const Leaderboard = () => {
           <h1 className="page-title">Leaderboard</h1>
         </div>
         <p className="page-subtitle">
-          Top performers ranked by completed problems. Master quantum computing and climb the ranks!
+          Top performers ranked by completed problems: Master quantum computing and climb the ranks!
         </p>
         <div style={{
           background: 'rgba(255, 255, 255, 0.05)',

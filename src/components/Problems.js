@@ -95,7 +95,7 @@ const Problems = () => {
       <div className="page-header">
         <h1 className="page-title">LeetCode of Quantum Computing</h1>
         <p className="page-subtitle">
-          Challenge yourself with quantum computing problems ranging from basic concepts to advanced algorithms. <b>New problems added weekly!</b>
+          Challenge yourself with quantum computing problems ranging from basic concepts to advanced algorithms, <b>New problems added weekly!</b>
         </p>
       </div>
 
