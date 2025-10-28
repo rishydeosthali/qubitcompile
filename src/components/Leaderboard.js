@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Trophy, Medal, Award, User, Crown, Star, Edit2, Save, X } from 'lucide-react';
+import { Trophy, Medal, Award, User, Crown, Star, Edit2, Save, X, TrendingUp } from 'lucide-react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { getLeaderboardData } from '../utils/progress';
@@ -134,7 +134,7 @@ const Leaderboard = () => {
     <div className="leaderboard-container">
       <div className="page-header">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
-          <Trophy size={48} color="#FFD700" style={{ marginTop: '-18px' }} />
+          <TrendingUp size={40} color="#FFD700" style={{ marginTop: '-10px' }} />
           <h1 className="page-title">Leaderboard</h1>
         </div>
         <p className="page-subtitle">
