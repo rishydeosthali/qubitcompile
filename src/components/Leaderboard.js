@@ -134,7 +134,7 @@ const Leaderboard = () => {
     <div className="leaderboard-container">
       <div className="page-header">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
-          <Trophy size={48} color="#FFD700" />
+          <Trophy size={48} color="#FFD700" style={{ marginTop: '-5px' }} />
           <h1 className="page-title">Leaderboard</h1>
         </div>
         <p className="page-subtitle">
@@ -142,15 +142,25 @@ const Leaderboard = () => {
         </p>
         <div style={{
           background: 'rgba(255, 255, 255, 0.05)',
-          padding: '0.75rem 2rem',
-          borderRadius: '0.5rem',
+          padding: '1rem 2.5rem',
+          borderRadius: '0.75rem',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           textAlign: 'center',
-          margin: '1rem auto 0',
-          width: 'fit-content'
+          margin: '1.5rem auto 0',
+          width: 'fit-content',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.75rem'
         }}>
-          <p className="page-subtitle" style={{ fontStyle: 'italic', color: '#b0b0c0', margin: 0 }}>
-            All Submitted Solutions Are Reviewed
+          <Star size={20} color="#00d4ff" style={{ flexShrink: 0 }} />
+          <p style={{ 
+            color: '#e8e8f0', 
+            margin: 0,
+            fontSize: '0.95rem',
+            fontWeight: '500',
+            letterSpacing: '0.3px'
+          }}>
+            All solutions are reviewed for accuracy
           </p>
         </div>
       </div>
@@ -165,6 +175,34 @@ const Leaderboard = () => {
         </div>
       ) : (
         <>
+          {/* Sign In Required Message */}
+          {!currentUser && (
+            <div className="card" style={{ 
+              marginBottom: '2rem',
+              background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(78, 205, 196, 0.1))',
+              border: '2px solid rgba(0, 212, 255, 0.3)',
+              textAlign: 'center',
+              padding: '2rem'
+            }}>
+              <h3 style={{ 
+                color: '#e8e8f0', 
+                margin: 0,
+                fontSize: '1.5rem'
+              }}>
+                Please sign in to join leaderboard
+              </h3>
+              <p style={{ 
+                color: '#b0b0c0', 
+                margin: '1rem 0 0 0',
+                fontSize: '1.1rem',
+                fontWeight: '400',
+                lineHeight: '1.6'
+              }}>
+                Sign in to track your progress and compete on the leaderboard
+              </p>
+            </div>
+          )}
+          
           {/* Current User Rank Display */}
           {currentUser && !currentUserRank && (
             <div className="card" style={{ 
@@ -308,7 +346,7 @@ const Leaderboard = () => {
                           fontSize: '0.75rem',
                           fontStyle: 'italic'
                         }}>
-                          Click the pencil icon to edit name displayed on leaderboard
+                          Click the pencil icon to edit your display name on the Top 25 leaderboard
                         </p>
                       </div>
                     )}
@@ -364,7 +402,7 @@ const Leaderboard = () => {
             {/* Full Leaderboard List */}
             <div className="leaderboard-list">
               <h3 style={{ color: '#e8e8f0', marginBottom: '1.5rem', textAlign: 'center' }}>
-                Full Rankings (Top 25)
+                Only the Top 25 Players Are Displayed
               </h3>
               {leaderboardData.slice(0, 25).map((user, index) => {
                 const rank = index + 1;
