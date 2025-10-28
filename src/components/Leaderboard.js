@@ -135,7 +135,7 @@ const Leaderboard = () => {
       <div className="page-header">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
           <TrendingUp size={40} color="#FFD700" style={{ marginTop: '-10px' }} />
-          <h1 className="page-title" style={{ marginLeft: '0.25rem' }}>Leaderboard</h1>
+          <h1 className="page-title">Leaderboard</h1>
         </div>
         <p className="page-subtitle">
           Top performers ranked by completed problems: Master quantum computing and climb the ranks!
