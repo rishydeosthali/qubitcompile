@@ -133,9 +133,9 @@ const Leaderboard = () => {
   return (
     <div className="leaderboard-container">
       <div className="page-header">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', marginBottom: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
           <TrendingUp size={40} color="#FFD700" style={{ marginTop: '-10px' }} />
-          <h1 className="page-title">Leaderboard</h1>
+          <h1 className="page-title" style={{ marginLeft: '0.25rem' }}>Leaderboard</h1>
         </div>
         <p className="page-subtitle">
           Top performers ranked by completed problems: Master quantum computing and climb the ranks!
@@ -182,7 +182,10 @@ const Leaderboard = () => {
               background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(78, 205, 196, 0.1))',
               border: '2px solid rgba(0, 212, 255, 0.3)',
               textAlign: 'center',
-              padding: '2rem'
+              padding: '2rem',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              maxWidth: '900px'
             }}>
               <h3 style={{ 
                 color: '#e8e8f0', 
@@ -362,7 +365,7 @@ const Leaderboard = () => {
               </div>
             </div>
           )}
-        <div className="leaderboard-grid">
+        <div className="leaderboard-grid" style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div className="leaderboard-card card">
             {/* Top 3 Podium */}
             <div className="podium-section">
