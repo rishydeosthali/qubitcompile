@@ -160,7 +160,7 @@ const Leaderboard = () => {
             fontWeight: '500',
             letterSpacing: '0.3px'
           }}>
-            All solutions are reviewed for accuracy
+            All submitted solutions are manually reviewed for accuracy
           </p>
         </div>
       </div>
@@ -192,11 +192,12 @@ const Leaderboard = () => {
                 Please sign in to join leaderboard
               </h3>
               <p style={{ 
-                color: '#b0b0c0', 
-                margin: '1rem 0 0 0',
-                fontSize: '1.1rem',
-                fontWeight: '400',
-                lineHeight: '1.6'
+                color: '#c0c0d0', 
+                margin: '1.25rem 0 0 0',
+                fontSize: '1.15rem',
+                fontWeight: '500',
+                lineHeight: '1.7',
+                letterSpacing: '0.2px'
               }}>
                 Sign in to track your progress and compete on the leaderboard
               </p>
