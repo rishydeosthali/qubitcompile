@@ -278,7 +278,7 @@ const ProblemDetail = () => {
       abortController.abort();
       setAbortController(null);
       setIsLoading(false);
-      setOutput('❌ Execution cancelled by user.');
+      setOutput('Execution cancelled by user.');
     }
   };
 

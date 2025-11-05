@@ -101,15 +101,9 @@ function App() {
           
           <div className="nav-links">
             <NavLink to="/problems" className="nav-link">
-              <Code size={20} />
               <span>Problems</span>
             </NavLink>
-            <NavLink to="/leaderboard" className="nav-link">
-              <Trophy size={20} />
-              <span>Leaderboard</span>
-            </NavLink>
             <NavLink to="/resources" className="nav-link">
-              <BookOpen size={20} />
               <span>Resources</span>
             </NavLink>
             
@@ -138,7 +132,6 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Problems />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/problems" element={<Problems />} />
             <Route path="/problems/:id" element={<ProblemDetail />} />

@@ -87,7 +87,6 @@ const Resources = () => {
         {/* Video Resources */}
         <div className="card">
           <h2 className="section-title">
-            <Youtube size={24} />
             Video Tutorials
           </h2>
           <div className="resource-section">
@@ -118,7 +117,6 @@ const Resources = () => {
         {/* Article Resources */}
         <div className="card">
           <h2 className="section-title">
-            <FileText size={24} />
             Research Articles
           </h2>
           <div className="resource-section">
@@ -150,7 +148,6 @@ const Resources = () => {
       {/* Books Section - Full Width */}
       <div className="card" style={{ marginTop: '2rem' }}>
         <h2 className="section-title">
-          <BookOpen size={24} />
           Essential Books
         </h2>
         <div style={{ 
