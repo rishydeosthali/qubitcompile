@@ -41,7 +41,7 @@ body {
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   font-size: 1.5rem;
   font-weight: bold;
   color: #1d1d1f;
@@ -203,12 +203,12 @@ body {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  color: #ffffff;
+  color: #1d1d1f;
   font-size: 1.5rem;
   cursor: pointer;
   display: flex;
@@ -219,7 +219,8 @@ body {
 }
 
 .auth-modal-close:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
   transform: scale(1.1);
 }
 
@@ -267,22 +268,29 @@ body {
 }
 
 .page-subtitle {
-  font-size: 1.1rem;
-  color: #3a3a3c;
-  max-width: 600px;
+  font-size: 1.15rem;
+  color: #1d1d1f;
+  max-width: 650px;
   margin: 0 auto;
   line-height: 1.6;
-  font-weight: 700;
-  letter-spacing: 0.2em;
+  font-weight: 600;
+  letter-spacing: 0.15em;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   text-transform: uppercase;
-  margin-top: 0.75rem;
-  padding: 0.75rem 1.5rem;
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background: #ffffff;
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
+  border-radius: 0.75rem;
   display: inline-block;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.page-subtitle:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
 }
 
 /* Cards */

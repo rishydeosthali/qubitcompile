@@ -112,9 +112,6 @@ const Auth = ({ onClose }) => {
             <img src="/favicon2.ico" alt="QubitCompile Logo" />
           </div>
           <h1>Welcome to QubitCompile</h1>
-          <p className="auth-subtitle">
-            Master quantum computing through hands-on practice and interactive learning
-          </p>
         </div>
 
         <div className="auth-benefits">
@@ -123,7 +120,6 @@ const Auth = ({ onClose }) => {
             <li>Track your progress across quantum problems</li>
             <li>Save your solutions and code snippets</li>
             <li>Access premium learning resources</li>
-            <li>Join the quantum computing community</li>
           </ul>
         </div>
 
