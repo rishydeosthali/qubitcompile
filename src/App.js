@@ -9,7 +9,6 @@ import Problems from './components/Problems';
 import ProblemDetail from './components/ProblemDetail';
 import Leaderboard from './components/Leaderboard';
 import Auth from './components/Auth';
-import QuantumSimulator from './components/QuantumSimulator';
 import './App.css';
 
 function App() {
@@ -67,20 +66,20 @@ function App() {
           justifyContent: 'center', 
           alignItems: 'center', 
           height: '100vh',
-          background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)'
+          background: '#f8f8f8'
         }}>
           <div style={{ 
             display: 'flex', 
             flexDirection: 'column', 
             alignItems: 'center', 
             gap: '1rem',
-            color: '#b0b0c0'
+            color: '#1d1d1f'
           }}>
             <div style={{
               width: '40px',
               height: '40px',
-              border: '3px solid rgba(0, 212, 255, 0.3)',
-              borderTop: '3px solid #00d4ff',
+              border: '3px solid rgba(0, 0, 0, 0.1)',
+              borderTop: '3px solid #6b8a9a',
               borderRadius: '50%',
               animation: 'spin 1s linear infinite'
             }}></div>
@@ -136,7 +135,6 @@ function App() {
             <Route path="/resources" element={<Resources />} />
             <Route path="/problems" element={<Problems />} />
             <Route path="/problems/:id" element={<ProblemDetail />} />
-            <Route path="/simulator" element={<QuantumSimulator />} />
           </Routes>
         </main>
 
