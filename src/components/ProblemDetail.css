@@ -1,17 +1,39 @@
 .problem-content h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #00d4ff;
+  color: #6b8a9a;
   margin-top: 2rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.problem-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #7a9a9a;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.problem-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #9a8a7a;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Style strong tags that are used as headings */
+.problem-content strong {
+  color: #6b8a9a;
+  font-weight: 600;
 }
 
 .problem-content p {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: #e8e8f0;
+  color: #3a3a3c;
   margin-bottom: 1.5rem;
 }
 
@@ -24,11 +46,11 @@
 
 .task-item {
   position: relative; /* For positioning the number */
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.03);
   padding: 1rem;
   padding-left: 4rem; /* Make space for the number */
   border-radius: 0.5rem;
-  border-left: 3px solid #4ecdc4;
+  border-left: 3px solid #7a9a9a;
 }
 
 .task-number {
@@ -41,21 +63,21 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 50%;
-  background: #4ecdc4;
-  color: #1e1e2e;
+  background: #7a9a9a;
+  color: #ffffff;
   font-weight: bold;
   font-size: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .code-example {
-  background: #1e1e2e;
+  background: #f5f5f7;
   padding: 1.5rem;
   border-radius: 0.5rem;
   font-family: 'Fira Code', monospace;
   font-size: 0.95rem;
-  color: #e8e8f0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #1d1d1f;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
 }
 
@@ -70,31 +92,31 @@
   padding-left: 1.5rem;
   margin-bottom: 0.75rem;
   font-size: 1.05rem;
-  color: #e8e8f0;
+  color: #3a3a3c;
 }
 
 .requirements-list li::before {
   content: '✓';
   position: absolute;
   left: 0;
-  color: #4ecdc4;
+  color: #7a9a9a;
   font-weight: bold;
 }
 
 /* Solution Section */
 .solution-code-container {
-  background: #1e1e2e;
+  background: #f5f5f7;
   border-radius: 0.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
   overflow: hidden;
 }
 
 .solution-code-header {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.05);
   padding: 0.75rem 1.5rem;
   font-weight: 600;
-  color: #00d4ff;
+  color: #6b8a9a;
   font-family: 'Fira Code', monospace;
 }
 
@@ -104,7 +126,7 @@
   font-family: 'Fira Code', monospace;
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #e8e8f0;
+  color: #1d1d1f;
   background: transparent;
   margin: 0;
   white-space: pre-wrap;
@@ -113,17 +135,17 @@
 .solution-explanation h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #00d4ff;
+  color: #1d1d1f;
   margin-top: 2rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .solution-explanation p {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: #e8e8f0;
+  color: #3a3a3c;
   margin-bottom: 1.5rem;
 }
 
@@ -132,28 +154,28 @@
 }
 
 .left-panel-content::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .left-panel-content::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
 
 .left-panel-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .task-args {
   margin-top: 0.75rem;
   padding-left: 1rem;
-  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
 .task-args strong {
-  color: #00d4ff;
+  color: #6b8a9a;
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -162,7 +184,7 @@
   list-style-type: none;
   padding-left: 1rem;
   margin: 0;
-  color: #e8e8f0; /* Changed from #b0b0c0 */
+  color: #3a3a3c;
 }
 
 .task-args ul li {
@@ -172,7 +194,7 @@
 .task-args code {
   padding: 0;
   border-radius: 0;
-  color: #4ecdc4; /* Keep the neon highlight */
+  color: #7a9a9a;
   /* font-family is removed to inherit from parent */
   font-weight: bold; /* Add bold */
 }

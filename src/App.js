@@ -9,6 +9,7 @@ import Problems from './components/Problems';
 import ProblemDetail from './components/ProblemDetail';
 import Leaderboard from './components/Leaderboard';
 import Auth from './components/Auth';
+import QuantumSimulator from './components/QuantumSimulator';
 import './App.css';
 
 function App() {
@@ -135,6 +136,7 @@ function App() {
             <Route path="/resources" element={<Resources />} />
             <Route path="/problems" element={<Problems />} />
             <Route path="/problems/:id" element={<ProblemDetail />} />
+            <Route path="/simulator" element={<QuantumSimulator />} />
           </Routes>
         </main>
 

@@ -78,15 +78,12 @@ const Resources = () => {
     <div>
       <div className="page-header">
         <h1 className="page-title">Quantum Resources</h1>
-        <p className="page-subtitle">
-          Curated collection of the best quantum computing videos, articles, and books to accelerate your learning journey
-        </p>
       </div>
 
       <div className="resources-container">
         {/* Video Resources */}
-        <div className="card">
-          <h2 className="section-title">
+        <div className="card" style={{ borderLeft: '4px solid #9a7a7a' }}>
+          <h2 className="section-title" style={{ color: '#9a7a7a' }}>
             Video Tutorials
           </h2>
           <div className="resource-section">
@@ -99,7 +96,7 @@ const Resources = () => {
                 className="resource-item"
               >
                 <div className="resource-thumbnail">
-                  <Youtube size={24} color="#ff6b6b" />
+                  <Youtube size={24} color="#9a7a7a" />
                 </div>
                 <div className="resource-info">
                   <h3>{video.title}</h3>
@@ -115,8 +112,8 @@ const Resources = () => {
         </div>
 
         {/* Article Resources */}
-        <div className="card">
-          <h2 className="section-title">
+        <div className="card" style={{ borderLeft: '4px solid #7a9a9a' }}>
+          <h2 className="section-title" style={{ color: '#7a9a9a' }}>
             Research Articles
           </h2>
           <div className="resource-section">
@@ -129,7 +126,7 @@ const Resources = () => {
                 className="resource-item"
               >
                 <div className="resource-thumbnail">
-                  <FileText size={24} color="#4ecdc4" />
+                  <FileText size={24} color="#7a9a9a" />
                 </div>
                 <div className="resource-info">
                   <h3>{article.title}</h3>
@@ -146,8 +143,8 @@ const Resources = () => {
       </div>
 
       {/* Books Section - Full Width */}
-      <div className="card" style={{ marginTop: '2rem' }}>
-        <h2 className="section-title">
+      <div className="card" style={{ marginTop: '2rem', borderLeft: '4px solid #6b8a9a' }}>
+        <h2 className="section-title" style={{ color: '#6b8a9a' }}>
           Essential Books
         </h2>
         <div style={{ 
@@ -167,17 +164,17 @@ const Resources = () => {
                 flexDirection: 'column', 
                 alignItems: 'flex-start',
                 padding: '1.5rem',
-                background: 'rgba(255, 255, 255, 0.03)'
+                background: 'rgba(0, 0, 0, 0.02)'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', width: '100%' }}>
                 <div className="resource-thumbnail" style={{ width: '50px', height: '70px' }}>
-                  <BookOpen size={20} color="#ff9f43" />
+                  <BookOpen size={20} color="#6b8a9a" />
                 </div>
                 <div className="resource-info" style={{ flex: 1 }}>
                   <h3 style={{ marginBottom: '0.5rem' }}>{book.title}</h3>
-                  <p style={{ fontSize: '0.9rem', color: '#00d4ff' }}>{book.authors}</p>
-                  <p style={{ fontSize: '0.8rem', opacity: 0.8 }}>{book.publisher}</p>
+                  <p style={{ fontSize: '0.9rem', color: '#6b8a9a' }}>{book.authors}</p>
+                  <p style={{ fontSize: '0.8rem', color: '#6e6e73', opacity: 0.8 }}>{book.publisher}</p>
                 </div>
                 <ExternalLink size={16} style={{ opacity: 0.6 }} />
               </div>
@@ -185,7 +182,7 @@ const Resources = () => {
                 fontSize: '0.85rem', 
                 marginTop: '1rem', 
                 lineHeight: '1.4',
-                color: '#b0b0c0'
+                color: '#6e6e73'
               }}>
                 {book.description}
               </p>
@@ -195,8 +192,8 @@ const Resources = () => {
       </div>
 
       {/* Quick Links */}
-      <div className="card" style={{ marginTop: '2rem', textAlign: 'center' }}>
-        <h2 className="section-title" style={{ justifyContent: 'center' }}>
+      <div className="card" style={{ marginTop: '2rem', textAlign: 'center', borderLeft: '4px solid #9a8a7a' }}>
+        <h2 className="section-title" style={{ justifyContent: 'center', color: '#9a8a7a' }}>
           Quick Access Links
         </h2>
         <div style={{ 
@@ -207,11 +204,11 @@ const Resources = () => {
           marginTop: '1.5rem'
         }}>
           {[
-            { name: 'IBM Qiskit', url: 'https://qiskit.org', color: '#00d4ff' },
-            { name: 'Google Cirq', url: 'https://quantumai.google/cirq', color: '#4ecdc4' },
-            { name: 'Microsoft Q#', url: 'https://quantum.microsoft.com/', color: '#ff6b6b' },
-            { name: 'Rigetti Forest', url: 'https://rigetti.com', color: '#ff9f43' },
-            { name: 'PennyLane', url: 'https://pennylane.ai', color: '#a8e6cf' }
+            { name: 'IBM Qiskit', url: 'https://qiskit.org', color: '#6b8a9a' },
+            { name: 'Google Cirq', url: 'https://quantumai.google/cirq', color: '#7a9a9a' },
+            { name: 'Microsoft Q#', url: 'https://quantum.microsoft.com/', color: '#9a8a7a' },
+            { name: 'Rigetti Forest', url: 'https://rigetti.com', color: '#9a7a7a' },
+            { name: 'PennyLane', url: 'https://pennylane.ai', color: '#6b8a9a' }
           ].map((link, index) => (
             <a
               key={index}
@@ -223,7 +220,7 @@ const Resources = () => {
                 alignItems: 'center',
                 gap: '0.5rem',
                 padding: '0.75rem 1.5rem',
-                background: `${link.color}20`,
+                background: 'transparent',
                 color: link.color,
                 borderRadius: '2rem',
                 textDecoration: 'none',
@@ -231,11 +228,13 @@ const Resources = () => {
                 transition: 'all 0.3s ease'
               }}
               onMouseEnter={(e) => {
-                e.target.style.background = `${link.color}30`;
+                e.target.style.background = `${link.color}15`;
+                e.target.style.borderColor = `${link.color}60`;
                 e.target.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.background = `${link.color}20`;
+                e.target.style.background = 'transparent';
+                e.target.style.borderColor = `${link.color}40`;
                 e.target.style.transform = 'translateY(0)';
               }}
             >

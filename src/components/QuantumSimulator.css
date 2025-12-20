@@ -1,0 +1,79 @@
+.quantum-simulator-container {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  overflow: hidden;
+  z-index: 10;
+}
+
+.simulator-header {
+  padding: 1.5rem 2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.simulator-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 1rem 0;
+}
+
+.simulator-description {
+  font-size: 1.1rem;
+  color: #b0b0c0;
+  margin: 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.simulator-wrapper {
+  flex: 1 1 auto;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #0f0f23;
+  min-height: 0;
+}
+
+.quirk-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .simulator-title {
+    font-size: 2rem;
+  }
+  
+  .simulator-description {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .simulator-header {
+    padding: 1.5rem 1rem;
+  }
+}
+

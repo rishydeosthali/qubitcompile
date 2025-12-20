@@ -108,6 +108,26 @@ const ProblemDetail = () => {
     setSubmissions(newProblem.submissions);
   }, [id]);
 
+  // Style headings in problem content
+  useEffect(() => {
+    const styleHeadings = () => {
+      const problemContent = document.querySelector('.problem-content');
+      if (!problemContent) return;
+
+      const headings = problemContent.querySelectorAll('h2, h3, h4, strong');
+      headings.forEach((heading) => {
+        const text = heading.textContent.toLowerCase();
+        if (text.includes('problem statement') || text.includes('problem') || text.includes('task') || text.includes('test case') || text.includes('test')) {
+          heading.style.color = '#9a8a7a';
+        }
+      });
+    };
+
+    // Run after a short delay to ensure DOM is updated
+    const timer = setTimeout(styleHeadings, 100);
+    return () => clearTimeout(timer);
+  }, [activeTab, id]);
+
   useEffect(() => {
     const body = document.body;
     if (showSuccessModal || showErrorModal) {
@@ -376,10 +396,10 @@ const ProblemDetail = () => {
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
-      case 'easy': return '#4ecdc4';
-      case 'medium': return '#ff6b6b';
-      case 'hard': return '#ff9f43';
-      default: return '#b0b0c0';
+      case 'easy': return '#7a9a9a';
+      case 'medium': return '#9a8a7a';
+      case 'hard': return '#9a7a7a';
+      default: return '#8a8a8a';
     }
   };
 
@@ -399,8 +419,8 @@ const ProblemDetail = () => {
             alignItems: 'center',
             gap: '0.75rem',
             background: 'transparent',
-            border: '1px solid #e8e8f0',
-            color: '#e8e8f0',
+            border: '1px solid rgba(0, 0, 0, 0.2)',
+            color: '#1d1d1f',
             padding: '1rem 1.5rem',
             borderRadius: '0.75rem',
             cursor: 'pointer',
@@ -422,8 +442,8 @@ const ProblemDetail = () => {
               alignItems: 'center',
               gap: '0.75rem',
               background: 'transparent',
-              border: !prevProblemId ? '1px solid #8a8a9a' : '1px solid #e8e8f0',
-              color: !prevProblemId ? '#8a8a9a' : '#e8e8f0',
+              border: !prevProblemId ? '1px solid #999' : '1px solid rgba(0, 0, 0, 0.2)',
+              color: !prevProblemId ? '#999' : '#1d1d1f',
               padding: '1rem 1.5rem',
               borderRadius: '0.75rem',
               cursor: !prevProblemId ? 'not-allowed' : 'pointer',
@@ -444,8 +464,8 @@ const ProblemDetail = () => {
               alignItems: 'center',
               gap: '0.75rem',
               background: 'transparent',
-              border: !nextProblemId ? '1px solid #8a8a9a' : '1px solid #e8e8f0',
-              color: !nextProblemId ? '#8a8a9a' : '#e8e8f0',
+              border: !nextProblemId ? '1px solid #999' : '1px solid rgba(0, 0, 0, 0.2)',
+              color: !nextProblemId ? '#999' : '#1d1d1f',
               padding: '1rem 1.5rem',
               borderRadius: '0.75rem',
               cursor: !nextProblemId ? 'not-allowed' : 'pointer',
@@ -465,13 +485,13 @@ const ProblemDetail = () => {
         <div className="card" style={{ marginBottom: '2rem' }}>
           {viewedSolutions[id] && !completedProblems[id]?.completedAt && (
             <div style={{
-              background: 'rgba(255, 159, 67, 0.2)',
-              color: '#ff9f43',
+              background: 'rgba(154, 122, 122, 0.15)',
+              color: '#9a7a7a',
               padding: '1rem',
               borderRadius: '0.5rem',
               marginBottom: '1.5rem',
               textAlign: 'center',
-              border: '1px solid rgba(255, 159, 67, 0.3)'
+              border: '1px solid rgba(154, 122, 122, 0.2)'
             }}>
               You have viewed the solution for this problem, so it cannot be marked as completed
             </div>
@@ -487,7 +507,7 @@ const ProblemDetail = () => {
                 <h1 style={{
                   fontSize: '2rem',
                   fontWeight: 'bold',
-                  color: '#e8e8f0',
+                  color: '#1d1d1f',
                   margin: 0
                 }}>
                   {currentProblem.title}
@@ -497,8 +517,8 @@ const ProblemDetail = () => {
                     display: 'flex',
                     alignItems: 'center',
                     gap: '0.5rem',
-                    background: 'rgba(78, 205, 196, 0.2)',
-                    color: '#4ecdc4',
+                    background: 'rgba(122, 154, 154, 0.15)',
+                    color: '#7a9a9a',
                     padding: '0.5rem 1rem',
                     borderRadius: '1rem',
                     fontSize: '0.9rem',
@@ -522,7 +542,7 @@ const ProblemDetail = () => {
               >
                 {currentProblem.difficulty}
               </span>
-              <span style={{ color: '#00d4ff', fontWeight: '500' }}>
+              <span style={{ color: '#6b8a9a', fontWeight: '500' }}>
                 {currentProblem.category}
               </span>
             </div>
@@ -530,8 +550,8 @@ const ProblemDetail = () => {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Clock size={16} color="#b0b0c0" />
-              <span style={{ color: '#b0b0c0' }}>{currentProblem.time}</span>
+              <Clock size={16} color="#6e6e73" />
+              <span style={{ color: '#6e6e73' }}>{currentProblem.time}</span>
             </div>
           </div>
         </div>
@@ -541,37 +561,37 @@ const ProblemDetail = () => {
           display: 'flex',
           gap: '2rem',
           padding: '1rem 0',
-          borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+          borderTop: '1px solid rgba(0, 0, 0, 0.1)'
         }}>
           <div style={{ textAlign: 'center' }}>
             <div style={{
               fontSize: '1.25rem',
               fontWeight: 'bold',
-              color: '#4ecdc4'
+              color: '#7a9a9a'
             }}>
               {currentProblem.acceptance}
             </div>
-            <div style={{ fontSize: '0.9rem', color: '#b0b0c0' }}>Acceptance</div>
+            <div style={{ fontSize: '0.9rem', color: '#6e6e73' }}>Acceptance</div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{
               fontSize: '1.25rem',
               fontWeight: 'bold',
-              color: '#00d4ff'
+              color: '#6b8a9a'
             }}>
               {submissions}
             </div>
-            <div style={{ fontSize: '0.9rem', color: '#b0b0c0' }}>Submissions</div>
+            <div style={{ fontSize: '0.9rem', color: '#6e6e73' }}>Submissions</div>
           </div>
           <div style={{ textAlign: 'center' }}>
             <div style={{
               fontSize: '1.25rem',
               fontWeight: 'bold',
-              color: '#ff6b6b'
+              color: '#9a8a7a'
             }}>
               #{id}
             </div>
-            <div style={{ fontSize: '0.9rem', color: '#b0b0c0' }}>Problem ID</div>
+            <div style={{ fontSize: '0.9rem', color: '#6e6e73' }}>Problem ID</div>
           </div>
         </div>
       </div>
@@ -588,14 +608,14 @@ const ProblemDetail = () => {
             display: 'flex',
             gap: '2rem',
             marginBottom: '1.5rem',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
             paddingBottom: '1rem'
           }}>
             <button
               onClick={() => setActiveTab('description')}
               style={{
-                background: activeTab === 'description' ? 'rgba(0, 212, 255, 0.2)' : 'transparent',
-                color: activeTab === 'description' ? '#00d4ff' : '#b0b0c0',
+                background: activeTab === 'description' ? 'rgba(0, 0, 0, 0.08)' : 'transparent',
+                color: activeTab === 'description' ? '#1d1d1f' : '#6e6e73',
                 border: 'none',
                 padding: '0.5rem 1rem',
                 borderRadius: '0.5rem',
@@ -609,8 +629,8 @@ const ProblemDetail = () => {
             <button
               onClick={() => setActiveTab('solution')}
               style={{
-                background: activeTab === 'solution' ? 'rgba(0, 212, 255, 0.2)' : 'transparent',
-                color: activeTab === 'solution' ? '#00d4ff' : '#b0b0c0',
+                background: activeTab === 'solution' ? 'rgba(0, 0, 0, 0.08)' : 'transparent',
+                color: activeTab === 'solution' ? '#1d1d1f' : '#6e6e73',
                 border: 'none',
                 padding: '0.5rem 1rem',
                 borderRadius: '0.5rem',
@@ -628,14 +648,14 @@ const ProblemDetail = () => {
             style={{
               flex: 1,
               overflow: 'auto',
-              color: '#e8e8f0',
+              color: '#1d1d1f',
               lineHeight: '1.7',
               fontSize: '1.05rem',
-              background: 'rgba(30, 32, 40, 0.7)',
+              background: '#ffffff',
               borderRadius: '0.5rem',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
               padding: '2rem 2rem 1.5rem 2rem',
-              border: '1px solid rgba(255,255,255,0.06)'
+              border: '1px solid rgba(0,0,0,0.1)'
             }}
           >
             {activeTab === 'description' ? (
@@ -670,7 +690,7 @@ const ProblemDetail = () => {
                     border: '1px solid rgba(255, 255, 255, 0.1)'
                   }}>
                     <h3 style={{ 
-                      color: '#e8e8f0', 
+                      color: '#1d1d1f', 
                       marginBottom: '1rem',
                       fontSize: '1.25rem',
                       fontWeight: '500',
@@ -678,26 +698,26 @@ const ProblemDetail = () => {
                       letterSpacing: '0.01em'
                     }}>View Solution</h3>
                     <p style={{
-                      color: '#ff6b6b',
+                      color: '#9a8a7a',
                       marginBottom: '1.5rem',
                       fontSize: '0.9rem',
                       maxWidth: '100%',
                       fontFamily: "'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
                       fontWeight: '500',
                       lineHeight: '1.5',
-                      background: 'rgba(255, 107, 107, 0.05)',
+                      background: 'rgba(0, 0, 0, 0.05)',
                       padding: '0.75rem',
                       borderRadius: '0.5rem',
-                      border: '1px solid rgba(255, 107, 107, 0.1)'
+                      border: '1px solid rgba(0, 0, 0, 0.1)'
                     }}>
                       ⚠️ This will prevent you from receiving credit for this problem
                     </p>
                     <button 
                       onClick={handleShowSolution}
                       style={{
-                        background: 'rgba(255, 255, 255, 0.1)',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
-                        color: '#e8e8f0',
+                        background: 'rgba(0, 0, 0, 0.05)',
+                        border: '1px solid rgba(0, 0, 0, 0.1)',
+                        color: '#1d1d1f',
                         padding: '0.75rem 1.5rem',
                         borderRadius: '0.5rem',
                         cursor: 'pointer',
@@ -708,12 +728,12 @@ const ProblemDetail = () => {
                         letterSpacing: '0.01em'
                       }}
                       onMouseEnter={(e) => {
-                        e.target.style.background = 'rgba(255, 255, 255, 0.15)';
-                        e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                        e.target.style.background = 'rgba(0, 0, 0, 0.08)';
+                        e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)';
                       }}
                       onMouseLeave={(e) => {
-                        e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                        e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                        e.target.style.background = 'rgba(0, 0, 0, 0.05)';
+                        e.target.style.borderColor = 'rgba(0, 0, 0, 0.1)';
                       }}
                     >
                       Show Solution
@@ -729,25 +749,12 @@ const ProblemDetail = () => {
                   height: '100%',
                   textAlign: 'center',
                   padding: '3rem 2rem',
-                  background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(255, 107, 107, 0.05))',
+                  background: 'rgba(0, 0, 0, 0.03)',
                   borderRadius: '1rem',
-                  border: '2px dashed rgba(0, 212, 255, 0.3)'
+                  border: '1px solid rgba(0, 0, 0, 0.1)'
                 }}>
-                  <div style={{
-                    width: '80px',
-                    height: '80px',
-                    background: 'linear-gradient(135deg, #00d4ff, #0099cc)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '2rem',
-                    boxShadow: '0 10px 30px rgba(0, 212, 255, 0.3)'
-                  }}>
-                    <div style={{ fontSize: '2.5rem' }}>🔒</div>
-                  </div>
                   <h3 style={{ 
-                    color: '#e8e8f0', 
+                    color: '#1d1d1f', 
                     marginBottom: '2rem',
                     fontSize: '1.5rem',
                     fontWeight: '600'
@@ -758,24 +765,23 @@ const ProblemDetail = () => {
                       window.dispatchEvent(new CustomEvent('showAuthModal'));
                     }}
                     style={{
-                      background: 'linear-gradient(135deg, #00d4ff, #0099cc)',
-                      color: 'white',
-                      border: 'none',
+                      background: 'transparent',
+                      color: '#1d1d1f',
+                      border: '1px solid rgba(0, 0, 0, 0.2)',
                       padding: '1rem 2rem',
                       borderRadius: '0.75rem',
                       cursor: 'pointer',
                       fontWeight: '600',
                       fontSize: '1.1rem',
-                      transition: 'all 0.3s ease',
-                      boxShadow: '0 4px 15px rgba(0, 212, 255, 0.3)'
+                      transition: 'all 0.3s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 6px 20px rgba(0, 212, 255, 0.4)';
+                      e.target.style.borderColor = 'rgba(0, 0, 0, 0.3)';
+                      e.target.style.background = 'rgba(0, 0, 0, 0.05)';
                     }}
                     onMouseLeave={(e) => {
-                      e.target.style.transform = 'translateY(0)';
-                      e.target.style.boxShadow = '0 4px 15px rgba(0, 212, 255, 0.3)';
+                      e.target.style.borderColor = 'rgba(0, 0, 0, 0.2)';
+                      e.target.style.background = 'transparent';
                     }}
                   >
                     Sign In to Continue
@@ -787,17 +793,19 @@ const ProblemDetail = () => {
         </div>
 
         {/* Right Panel - Code Editor */}
-        <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '80vh' }}>
+        <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '80vh', background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.1)', padding: '2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
           <div className="editor-header" style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            marginBottom: '1rem'
+            marginBottom: '1.5rem',
+            paddingBottom: '1rem',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
           }}>
             <span className="editor-title" style={{
               fontWeight: 'bold',
               fontSize: '1.1rem',
-              color: '#e8e8f0'
+              color: '#1d1d1f'
             }}>Python Code Editor</span>
             {isLoading ? (
               <button className="run-button" onClick={cancelExecution} style={{
@@ -854,18 +862,19 @@ const ProblemDetail = () => {
           {(output || isLoading) && (
             <div className="output-container" style={{
               marginTop: '1rem',
-              background: '#181818',
+              background: '#f5f5f7',
               padding: '1rem',
               borderRadius: '4px',
-              color: '#baffc9',
+              color: '#1d1d1f',
               fontFamily: 'monospace',
               fontSize: '1rem',
-              whiteSpace: 'pre-wrap'
+              whiteSpace: 'pre-wrap',
+              border: '1px solid rgba(0, 0, 0, 0.1)'
             }}>
               <div className="output-header" style={{
                 fontWeight: 'bold',
                 marginBottom: '0.5rem',
-                color: '#e8e8f0',
+                color: '#1d1d1f',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem'
@@ -874,15 +883,15 @@ const ProblemDetail = () => {
                   <div style={{
                     width: '16px',
                     height: '16px',
-                    border: '2px solid rgba(0, 212, 255, 0.3)',
-                    borderTop: '2px solid #00d4ff',
+                    border: '2px solid rgba(107, 138, 154, 0.3)',
+                    borderTop: '2px solid #6b8a9a',
                     borderRadius: '50%',
                     animation: 'spin 1s linear infinite'
                   }}></div>
                 )}
                 {isLoading ? 'Executing...' : 'Output:'}
               </div>
-              <div className="output-content">{output}</div>
+              <div className="output-content" style={{ color: '#1d1d1f' }}>{output}</div>
             </div>
           )}
         </div>
@@ -921,17 +930,17 @@ const ProblemDetail = () => {
           padding: '2rem'
         }}>
           <div style={{
-            background: 'rgba(30, 30, 60, 0.95)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
+            background: '#ffffff',
+            border: '1px solid rgba(0, 0, 0, 0.1)',
             borderRadius: '1rem',
             padding: '2rem',
             maxWidth: '400px',
             width: '100%',
             textAlign: 'center',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)'
           }}>
             <h2 style={{
-              color: '#e8e8f0',
+              color: '#1d1d1f',
               marginBottom: '1rem',
               fontSize: '1.25rem',
               fontWeight: '600',
@@ -942,7 +951,7 @@ const ProblemDetail = () => {
             </h2>
             
             <p style={{
-              color: '#b0b0c0',
+              color: '#6e6e73',
               marginBottom: '2rem',
               fontSize: '0.9rem',
               lineHeight: '1.5',
@@ -960,9 +969,9 @@ const ProblemDetail = () => {
               <button
                 onClick={handleCancelSolution}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  color: '#e8e8f0',
+                  background: 'rgba(0, 0, 0, 0.05)',
+                  border: '1px solid rgba(0, 0, 0, 0.1)',
+                  color: '#1d1d1f',
                   padding: '0.75rem 1.5rem',
                   borderRadius: '0.5rem',
                   cursor: 'pointer',
@@ -973,12 +982,12 @@ const ProblemDetail = () => {
                   letterSpacing: '0.01em'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                  e.target.style.background = 'rgba(0, 0, 0, 0.08)';
+                  e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                  e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  e.target.style.background = 'rgba(0, 0, 0, 0.05)';
+                  e.target.style.borderColor = 'rgba(0, 0, 0, 0.1)';
                 }}
               >
                 Cancel
@@ -987,7 +996,7 @@ const ProblemDetail = () => {
               <button
                 onClick={handleConfirmSolution}
                 style={{
-                  background: 'rgba(255, 107, 107, 0.8)',
+                  background: '#9a8a7a',
                   border: 'none',
                   color: 'white',
                   padding: '0.75rem 1.5rem',
@@ -1000,10 +1009,10 @@ const ProblemDetail = () => {
                   letterSpacing: '0.01em'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.background = 'rgba(255, 107, 107, 1)';
+                  e.target.style.background = '#8a7a6a';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.background = 'rgba(255, 107, 107, 0.8)';
+                  e.target.style.background = '#9a8a7a';
                 }}
               >
                 Show Solution

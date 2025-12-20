@@ -1,32 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { XCircle, AlertTriangle, RotateCcw } from 'lucide-react';
+import React from 'react';
+import { RotateCcw } from 'lucide-react';
 import './ErrorModal.css';
 
 const ErrorModal = ({ isOpen, onClose, problemTitle, output, expectedOutput }) => {
-  const [showAnimation, setShowAnimation] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      // Trigger animation after modal opens
-      setTimeout(() => setShowAnimation(true), 100);
-    } else {
-      setShowAnimation(false);
-    }
-  }, [isOpen]);
 
   if (!isOpen) return null;
 
   return (
     <div className="error-modal-overlay" onClick={onClose}>
       <div className="error-modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className={`error-modal-body ${showAnimation ? 'animate' : ''}`}>
-          <div className="error-icon-container">
-            <XCircle className="error-icon" size={80} />
-            <div className="error-ring"></div>
-          </div>
-          
+        <div className="error-modal-body">
           <h2 className="error-title">Not Quite Right</h2>
-
           
           <div className="error-details">
             <div className="output-comparison">
@@ -52,8 +36,6 @@ const ErrorModal = ({ isOpen, onClose, problemTitle, output, expectedOutput }) =
               Try Again
             </button>
           </div>
-          
-
         </div>
       </div>
     </div>
